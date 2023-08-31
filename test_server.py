@@ -8,12 +8,28 @@ def main():
         f"""Item ID 44:\n{requests.get("http://127.0.0.1:8000/items/44").json()}"""
     )  # not found - raised error
 
-    print(f"""\nItems:\n{requests.get("http://127.0.0.1:8000/items").json()}""")
+    print(
+        f"""\nItem Hammer:\n{requests.get("http://127.0.0.1:8000/items?name=Hammer").json()}"""
+    )
 
     print("\n\nUpdating an item:")
     print(requests.put("http://127.0.0.1:8000/update/0?count=9001").json())
     print(requests.get("http://127.0.0.1:8000/").json())
     print()
+
+    print("\n Adding new item:")
+    print(
+        requests.post(
+            "http://127.0.0.1:8000/",
+            json={
+                "name": "Screwdriver",
+                "price": 3.99,
+                "count": 1000,
+                "id": 4,
+                "category": "tools",
+            },
+        ).json()
+    )
 
 
 if __name__ == "__main__":
