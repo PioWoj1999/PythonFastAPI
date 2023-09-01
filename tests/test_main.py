@@ -53,3 +53,4 @@ def test_add_item_post() -> None:
     )
     assert response.status_code == 200
     assert response.json() == {"added":post_data}
+
