@@ -3,4 +3,4 @@
 commands:
 
 * pip install fastapi[all]
-* uvicorn main:app --reload
+* py -m uvicorn main:app --reload

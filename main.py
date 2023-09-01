@@ -32,7 +32,11 @@ items = {
 @app.get("/")
 # def index() -> dict[str, dict[int, Item]]:
 def index():
-    return {"items": items}
+    return items
+
+@app.get("/hello")
+def say_hello(): 
+    return {"msg": "Hello World!"}
 
 
 @app.get("/items/{item_id}")
@@ -62,7 +66,7 @@ def query_item_by_parameters(
             (
                 name is None or item.name == name,
                 price is None or item.price == price,
-                count is None or item.count != count,
+                count is None or item.count == count,
                 category is None or item.category is category,
             )
         )
@@ -77,7 +81,7 @@ def query_item_by_parameters(
 @app.post("/")
 def add_item(item: Item) -> dict[str, Item]:
     if item.id in items:
-        HTTPException(status_code=400, detail=f"Item with {item.id=} already exists.")
+        HTTPException(status_code=400, detail=f"Item with {item.id} already exists.")
 
     items[item.id] = item
     return {"added": item}

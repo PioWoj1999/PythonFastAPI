@@ -1,4 +1,5 @@
 import requests
+from fastapi import HTTPException
 
 
 def main():
@@ -18,18 +19,19 @@ def main():
     print()
 
     print("\n Adding new item:")
-    print(
-        requests.post(
-            "http://127.0.0.1:8000/",
-            json={
-                "name": "Screwdriver",
+    try: 
+        print(
+            requests.post(
+                "http://127.0.0.1:8000/",
+                json={"name": "Screwdriver",
                 "price": 3.99,
                 "count": 1000,
                 "id": 4,
-                "category": "tools",
-            },
-        ).json()
-    )
+                "category": "tools",},
+            ).json()
+        )
+    except HTTPException: 
+        print("None")
 
 
 if __name__ == "__main__":
