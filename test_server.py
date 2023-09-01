@@ -19,19 +19,17 @@ def main():
     print()
 
     print("\n Adding new item:")
-    try: 
-        print(
-            requests.post(
-                "http://127.0.0.1:8000/",
-                json={"name": "Screwdriver",
-                "price": 3.99,
-                "count": 1000,
-                "id": 4,
-                "category": "tools",},
-            ).json()
-        )
-    except HTTPException: 
-        print("None")
+    print(
+        requests.post(
+            "http://127.0.0.1:8000/",
+            json={"name": "Screwdriver",
+            "price": 3.99,
+            "count": 1000,
+            "id": 4,
+            "category": "tools",},
+        ).json()
+    )
+    print(f"""All items: {requests.get("http://127.0.0.1:8000/").json()}""")
 
 
 if __name__ == "__main__":
